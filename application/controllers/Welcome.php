@@ -20,6 +20,14 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		$telemetryClient = new \ApplicationInsights\Telemetry_Client();
+$telemetryClient->getContext()->setInstrumentationKey(genenv('instrumentkey'));
+$telemetryClient->trackEvent('SillyEvent');
+$telemetryClient->flush()
+	
 		$this->load->view('welcome_message');
+		
+		$telemetryClient->trackEvent('noop');
+$telemetryClient->flush();
 	}
 }
