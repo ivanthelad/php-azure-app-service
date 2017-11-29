@@ -21,7 +21,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$telemetryClient = new \ApplicationInsights\Telemetry_Client();
-$telemetryClient->getContext()->setInstrumentationKey(genenv('instrumentkey'));
+$telemetryClient->getContext()->setInstrumentationKey(getenv('instrumentkey'));
 $telemetryClient->trackEvent('SillyEvent');
 $telemetryClient->flush()
 	
